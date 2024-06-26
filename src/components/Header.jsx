@@ -8,7 +8,7 @@ export default function Header() {
         Luca.dev
       </NavLink>
       <div className=' flex gap-8 text-sm mr-10' >
-          <NavLink to="/AirdropChecker" className=" text-white">
+          <NavLink to="/AirdropChecker" className=" text-gray-400">
             Airdrop Checker
           </NavLink>
           <NavLink to="/SavedWallets" className="text-gray-400">
