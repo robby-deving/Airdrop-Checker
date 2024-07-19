@@ -1,12 +1,15 @@
 import Header from './components/Header'
 import './App.css'
 import MainContainer from './components/MainContainer'
+import { UserInfoProvider } from './components/other/UseInfoProvider'
 
 function App() {
   return (
     <div className=' bg-black'>
-      <Header/>
-      <MainContainer />
+      <UserInfoProvider>
+        <Header/>
+        <MainContainer />
+      </UserInfoProvider>
     </div>
   )
 }

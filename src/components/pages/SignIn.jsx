@@ -1,14 +1,20 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate} from 'react-router-dom';
 import { auth } from '../firebase/config';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, child, get } from "firebase/database";
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { getCustomErrorMessage } from '../firebase/firebaseCustomErrorDictionary';
+import { useUser } from '../other/UseInfoProvider';
+
 
 export default function SignIn() {
 
     const [userCredentials, setUserCredentials] = useState({});
+    const navigate = useNavigate();// navigate from one route to another, or from one page to another as what i can understand hahahaha
+    const { isLoggedIn, user, login, logout } = useUser();
+
 
 
     function handleCredentials(e){
@@ -20,10 +26,24 @@ export default function SignIn() {
 
         const signInpromise = signInWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
         .then((userCredential) => {
-            console.log("sigined in");
+            console.log("signed in");
             // Signed in 
             const user = userCredential.user;
-            // ...
+
+            const dbRef = ref(getDatabase());
+                get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    let userInfo = snapshot.val();
+                    login(userInfo);
+
+                } else {
+                    console.log("No data available");
+                }
+                }).catch((error) => {
+                console.error(error);
+                });
+                navigate("/AirdropChecker");
+
         })
 
         toast.promise(
@@ -41,6 +61,8 @@ export default function SignIn() {
 
         )
     }
+
+
 
 
   return (

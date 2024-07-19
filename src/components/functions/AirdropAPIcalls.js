@@ -6,6 +6,7 @@ let results = {
 
 
 function CloudAirdrop(userAddresses) {
+    var total = 0;
     return Promise.all(userAddresses.map(userAddress => {
         return fetch(`https://worker.jup.ag/jup-claim-proof/CLoUDKc4Ane7HeQcPpE3YHnznRxhMimJ4MyaUqyHFzAu/${userAddress.trim()}`)
             .then(result => {
@@ -16,21 +17,22 @@ function CloudAirdrop(userAddresses) {
             })
             .then(data => {
                 const cloud = data.amount;
-                results.cloud[userAddress] =Math.round((cloud/1000000000) * 100) / 100 ;
-                toast.success(`${userAddress} is eligible`, {
-                    position: 'bottom-left'
-                });
+                let converted = Math.round((cloud/1000000000) * 100) / 100 ;
+                results.cloud[userAddress] = converted;
+                
+                total += converted;
+
             })
             .catch(error => {
                 results.cloud[userAddress] = '❌';
-                toast.error(`${userAddress} is not eligible`, {
-                    position: 'bottom-left'
-                });
             });
-    }));
+    })).then(() => {
+        results.cloud['total'] = Math.round(total * 100) / 100 ;
+    });
 }
 
 function wen(userAddresses) {
+    var total = 0;
     return Promise.all(userAddresses.map(userAddress => {
         return fetch(`https://worker.jup.ag/jup-claim-proof/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk/${userAddress.trim()}`)
             .then(result => {
@@ -41,18 +43,19 @@ function wen(userAddresses) {
             })
             .then(data => {
                 const wen = data.amount;
-                results.wen[userAddress] = wen/100000;
-                toast.success(`${userAddress} is eligible`, {
-                    position: 'bottom-left'
-                });
+                let converted = wen/100000;
+
+                results.wen[userAddress] = converted;
+
+                total += converted;
             })
             .catch(error => {
                 results.wen[userAddress] = '❌';
-                toast.error(`${userAddress} is not eligible`, {
-                    position: 'bottom-left'
-                });
             });
-    }));
+    })).then(()=>{
+        results.wen['total'] = total;
+    }
+    );
 }
 
 function AllAirdrop(userAddresses) {

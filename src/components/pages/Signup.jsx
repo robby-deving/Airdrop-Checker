@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { auth } from '../firebase/config';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
@@ -12,6 +12,7 @@ import { getCustomErrorMessage } from '../firebase/firebaseCustomErrorDictionary
 export default function Signup() {
             
     const [userCredentials, setUserCredentials] = useState({});
+    const navigate = useNavigate();
 
 
     function handleCredentials(e){
@@ -28,7 +29,11 @@ export default function Signup() {
             const db = getDatabase();
             set(ref(db, 'users/' + userId), {
             username: userCredentials.username,
+            email: userCredentials.email,
+            wallets: [1,2,3],
             });
+
+            navigate("/SignIn")
 
         })
 
