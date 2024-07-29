@@ -31,10 +31,10 @@ export default function Header() {
           {
               isLoggedIn ? (
                 <div className=' text-primary font-medium border-2 border-primary rounded-lg  p-1 px-2 flex gap-2 items-center'>
-                <img src="public\assets\user.png" alt="" className=' h-[15px] w-[15px]' />
+                <img src="\assets\user.png" alt="" className=' h-[15px] w-[15px]' />
                 <h3>{username}</h3>
                 <button onClick={logout}>
-                  <img src="public\assets\logout.png" alt="" />
+                  <img src="\assets\logout.png" alt="" />
                 </button>
               </div>
               ) :(

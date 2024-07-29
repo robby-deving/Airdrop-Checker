@@ -19,11 +19,11 @@ export default function Donate() {
   return (
     <div className='flex justify-center mt-[15vh]'>
       <div className="h-[35rem] w-[30rem] bg-white bg-opacity-15 border-gray-500 border-2 rounded-xl p-8 flex items-center flex-col justify-center">
-        <img className='h-[250px] w-[250px]' src="src/assets/qrcode.png" alt="" />
+        <img className='h-[250px] w-[250px]' src="/assets/qrcode.png" alt="" />
         <div className='w-ful bg-gray-400 flex justify-around p-2 rounded-md font-bold text-sm mt-5'>
           <h4>{donationAddress}</h4>
           <button onClick={copyToClipboard}>
-            <img src="src/assets/solar_copy-outline.png" alt="Copy to Clipboard" />
+            <img src="/assets/solar_copy-outline.png" alt="Copy to Clipboard" />
           </button>
         </div>
         <p className='text-white mt-5 text-center'>
