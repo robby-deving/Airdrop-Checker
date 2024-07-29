@@ -13,7 +13,7 @@ export default function SignIn() {
 
     const [userCredentials, setUserCredentials] = useState({});
     const navigate = useNavigate();// navigate from one route to another, or from one page to another as what i can understand hahahaha
-    const { isLoggedIn, user, login, logout } = useUser();
+    const {  login } = useUser();
 
 
 
@@ -34,6 +34,7 @@ export default function SignIn() {
                 get(child(dbRef, `users/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     let userInfo = snapshot.val();
+                    userInfo['uid'] = user.uid;
                     login(userInfo);
 
                 } else {

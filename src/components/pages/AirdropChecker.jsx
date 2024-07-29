@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import CustomRadioButton from '../other/radioButtonComponent';
 import toast from 'react-hot-toast';
 import { AllAirdrop, results as initialResults } from '../functions/AirdropAPIcalls';
+import { useUser } from '../other/UseInfoProvider';
+import { NavLink } from 'react-router-dom';
 
 export default function AirdropChecker() {
   const [walletAddresses, setWalletAddresses] = useState('');
   const [result, setResult] = useState(initialResults);
+
+  const { isLoggedin } = useUser()
 
   const handleUserInput = (event) => {
     const inputText = event.target.value;
@@ -59,11 +63,21 @@ export default function AirdropChecker() {
             <p>Clear</p>
           </button>
 
-          <button className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'>
-            <img className='w-[25px] h-[25px]' src="src/assets/save.png" alt="" />
-            <p>Check Saved Wallets</p>
-          </button>
-        </div>
+
+          {
+              isLoggedin ? (
+                <button className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'>
+                <img className='w-[25px] h-[25px]' src="src/assets/save.png" alt="" />
+                <p>Check Saved Wallets</p>
+                </button>
+              ): (
+                <NavLink to='/SignIn' className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'>
+                <img className='w-[25px] h-[25px]' src="src/assets/save.png" alt="" />
+                <p>Save Wallets</p>
+                </NavLink>
+              )
+            }
+         </div>
       </div>
 
       <div className='w-full mt-5'>
@@ -83,7 +97,7 @@ export default function AirdropChecker() {
               <tr>
                 <th className="sticky-column px-6 py-3 text-left">Addresses</th>
                 {Object.keys(result).map((header, index) => (
-                  <th className="px-6 py-3 text-left border-x border-gray-500 uppercase text-center" key={index}>{header}</th>
+                  <th className="px-6 py-3 border-x border-gray-500 uppercase text-center" key={index}>{header}</th>
                 ))}
               </tr>
             </thead>

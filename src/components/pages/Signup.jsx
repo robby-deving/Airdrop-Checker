@@ -30,7 +30,7 @@ export default function Signup() {
             set(ref(db, 'users/' + userId), {
             username: userCredentials.username,
             email: userCredentials.email,
-            wallets: [1,2,3],
+            wallets: [],
             });
 
             navigate("/SignIn")
@@ -53,7 +53,7 @@ export default function Signup() {
 
 
   return (
-    <div className='flex justify-center mt-[50%]'>
+    <div className='flex justify-center mt-[10%]'>
         <div className=" h-[30rem] w-[25rem] bg-white bg-opacity-15 border-gray-500 border-2 rounded-xl p-5 flex items-center flex-col justify-center" >
 
             <h1 className='text-3xl font-bold text-white'>Sign Up</h1>

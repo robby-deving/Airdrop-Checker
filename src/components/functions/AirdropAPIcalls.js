@@ -16,6 +16,7 @@ function CloudAirdrop(userAddresses) {
                 return result.json();
             })
             .then(data => {
+                console.log(data);
                 const cloud = data.amount;
                 let converted = Math.round((cloud/1000000000) * 100) / 100 ;
                 results.cloud[userAddress] = converted;

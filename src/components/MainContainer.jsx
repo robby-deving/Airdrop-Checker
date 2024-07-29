@@ -12,7 +12,6 @@ export default function () {
   return (
     <div className='flex justify-center '>
       <Toaster/>
-        <div className=' max-w-7xl'>
         <Routes >
             <Route path="/" element={ <AirdropChecker />}/>
             <Route path="/AirdropChecker" element={ <AirdropChecker />}/>
@@ -21,8 +20,6 @@ export default function () {
             <Route path="/Signup" element={ <Signup/>}/>
             <Route path="/SignIn/" element={ <SignIn/>}/>
         </Routes>
-        </div>
-        
     </div>
   )
 }

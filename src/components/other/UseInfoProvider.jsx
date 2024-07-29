@@ -8,16 +8,16 @@ export const UserInfoProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState(null);
   const [email, setEmail] = useState(null);
-  const [wallets, setWallets] = useState([]);
+  let  [wallets, setWallets] = useState([]);
+  const [userId, setUid] = useState(null);
 
-
-  
 
   const login = (userInfo) => {
     setIsLoggedIn(true);
     setUsername(userInfo.username);
     setEmail(userInfo.email);
     setWallets(userInfo.wallets)
+    setUid(userInfo.uid)
   };
 
   const logout = () => {
@@ -25,10 +25,11 @@ export const UserInfoProvider = ({ children }) => {
     setUsername(null);
     setEmail(null);
     setWallets([]);
+    setUid(null);
   };
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, username, email,wallets, login, logout }}>
+    <UserContext.Provider value={{ isLoggedIn, username, email,wallets,setWallets, userId, login, logout }}>
       {children}
     </UserContext.Provider>
   );
