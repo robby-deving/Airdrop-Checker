@@ -36,7 +36,7 @@ export default function SavedWallets() {
       <div className="flex justify-between pr-4">
         <h2 className="font-bold mt-5 text-3xl mb-3 text-white">My Saved Wallets</h2>
         <button onClick={isLoggedIn ? openModal : closeModal} className={`w-[25px] h-[25px] ${!isLoggedIn ? 'opacity-50 cursor-not-allowed' : ''}`}>
-              <img src="src/assets/add.png" alt="Add" className="w-[25px] h-[25px]" />
+              <img src="public/assets/add.png" alt="Add" className="w-[25px] h-[25px]" />
         </button>
       </div>
 

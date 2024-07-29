@@ -51,7 +51,7 @@ export default function AirdropChecker() {
             className='w-full bg-primary text-black font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center'
             onClick={handleSubmit}
           >
-            <img className='w-[20px] h-[20px]' src="src/assets/reload.png" alt="" />
+            <img className='w-[20px] h-[20px]' src="public/assets/reload.png" alt="" />
             <p>Check</p>
           </button>
 
@@ -59,7 +59,7 @@ export default function AirdropChecker() {
             className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'
             onClick={() => setWalletAddresses('')}
           >
-            <img className='w-[20px] h-[20px]' src="src/assets/clear.png" alt="" />
+            <img className='w-[20px] h-[20px]' src="public/assets/clear.png" alt="" />
             <p>Clear</p>
           </button>
 
@@ -67,12 +67,12 @@ export default function AirdropChecker() {
           {
               isLoggedin ? (
                 <button className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'>
-                <img className='w-[25px] h-[25px]' src="src/assets/save.png" alt="" />
+                <img className='w-[25px] h-[25px]' src="public/assets/save.png" alt="" />
                 <p>Check Saved Wallets</p>
                 </button>
               ): (
                 <NavLink to='/SignIn' className='w-full bg-white text-white font-bold rounded-lg p-2 flex justify-center gap-2 text-xl items-center bg-opacity-20 border border-gray-500'>
-                <img className='w-[25px] h-[25px]' src="src/assets/save.png" alt="" />
+                <img className='w-[25px] h-[25px]' src="public/assets/save.png" alt="" />
                 <p>Save Wallets</p>
                 </NavLink>
               )
